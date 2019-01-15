@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import People from '../api/people';
+import { Meteor } from 'meteor/meteor';
 
 class PeopleInfo extends Component {
     render() {
@@ -15,9 +16,13 @@ class PeopleInfo extends Component {
         );
     }
 
+    handleRemove = (id) => {
+        Meteor.call("deletePeople", id);
+    }
+
     makePeople(people) {
         return (
-            <li>{people.firstName} {people.lastName}</li>
+            <li>{people.firstName} {people.lastName} <span  onClick={() => this.handleRemove(people._id)}>X</span></li>
         );
     }
 }
