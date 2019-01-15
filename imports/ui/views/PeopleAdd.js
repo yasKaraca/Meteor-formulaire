@@ -10,11 +10,12 @@ class AddPeople extends Component {
     }
 
    handleSubmit = (e) => {
-       e.preventDefault();
-       console.log(this.state.firstNameInput);
-       console.log(this.state.lastNameInput.current.value);
-       Meteor.call("insertPeople", this.state.firstNameInput.current.value, this.state.lastNameInput.current.value);
+        e.preventDefault();
+        Meteor.call("insertPeople", this.state.firstNameInput.current.value, this.state.lastNameInput.current.value);
+        this.state.firstNameInput.current.value = "";
+        this.state.lastNameInput.current.value = "";
    }
+   
     render() {
         return (
             <div id="form">

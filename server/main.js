@@ -9,8 +9,8 @@ Meteor.methods({
   insertPeople(firstName, lastName)  {
       People.insert({ firstName, lastName, createdAt: new Date() });
     },
-    deletePeople( firstName, lastName) {
-      People.remove({firstName: firstName, lastName: lastName});
+    deletePeople(id) {
+      People.remove({_id: id});
     }
 })
 
