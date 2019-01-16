@@ -7,10 +7,21 @@ callnsertPeople = (firstName, lastName) => {
 
 Meteor.methods({
   insertPeople(firstName, lastName)  {
-      People.insert({ firstName, lastName, createdAt: new Date() });
+    if (firstName !== "" && lastName !== "") {
+        People.insert({ firstName, lastName, createdAt: new Date() });
+      }
     },
     deletePeople(id) {
       People.remove({_id: id});
+    },
+    updatePeople(id, firstName, lastName) {
+      People.update(
+          {"_id": id},
+          {$set: {"firstName": firstName, "lastName": lastName}}
+        )
+    },
+    findPeople(id) {
+        return People.findOne({_id: id});
     }
 })
 

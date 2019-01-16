@@ -1,13 +1,16 @@
-import React from 'react';
-import Hello from './Hello';
-import Info from './Info';
+import React, {Component} from 'react';
+import PeopleInfo from './People';
+import PeopleAdd from './views/PeopleAdd';
 
-const Home = () => {
-    <section>
-        <h1>Welcome to Meteor!</h1>
-        <Hello />
-        <Info />
-    </section>
+class Home extends Component {
+    render() {
+        return (
+            <section>
+                <PeopleInfo />
+                <PeopleAdd />
+            </section>
+        );
+    }
 }
 
 export default Home;

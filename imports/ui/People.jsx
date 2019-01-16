@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import People from '../api/people';
+import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 
 class PeopleInfo extends Component {
+
+    state = {
+        test: false,    
+    }
+
     render() {
         const peoples = this.props.peoples.map(
             people => this.makePeople(people)
@@ -20,9 +26,28 @@ class PeopleInfo extends Component {
         Meteor.call("deletePeople", id);
     }
 
-    makePeople(people) {
+    handleUpdate() {
+        this.setState({
+            test: true
+        })
+        console.log(this.state.test);
+    }
+
+    makeInput() {
         return (
-            <li>{people.firstName} {people.lastName} <span  onClick={() => this.handleRemove(people._id)}>X</span></li>
+            <div>
+                <input type="text" name="test" />
+            </div>
+        )
+    }
+
+    makePeople (people) {
+        return (
+            <li onClick={() => this.handleUpdate()}>
+                {people.firstName} {people.lastName}
+                <button  onClick={() => this.handleRemove(people._id)}>X</button>
+                <Link to={`/update/${people._id}`}>Modifier</Link>
+             </li>
         );
     }
 }
