@@ -16,10 +16,14 @@ class UpdatePeople extends Component {
     handelSubmit = (e) => {
         e.preventDefault();
         Meteor.call('updatePeople', this.state.id, this.state.firstNameInput.current.value, this.state.lastNameInput.current.value)
-        this.props.history.push("/");
+        this.props.history.push("/home");
     }
 
-    render() {      
+    render() {
+        console.log(sessionStorage.getItem("connexion"))
+        if (sessionStorage.getItem("connexion")) {
+            this.props.history.push("/home");
+        }  
         return (
             <div>
                 <form onSubmit={this.handelSubmit}>

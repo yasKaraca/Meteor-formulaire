@@ -1,7 +1,6 @@
 import React, { Component, createRef } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-
 class AddPeople extends Component {
     state = {
         firstNameInput: createRef(),
